@@ -15,11 +15,10 @@ namespace MossadDirectors.Models
         [Range(0, 1000)]
         public int y { get; set; }
 
-        public location(int x, int y)
+      public location(int x, int y)
         {
-            this.x = x;
-            this.y = y;
-
+            x = x;
+            y = y;
         }
     }
 }

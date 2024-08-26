@@ -6,16 +6,19 @@ namespace MossadDirectors.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly HttpClient _httpClient = new HttpClient();
         private readonly ILogger<HomeController> _logger;
+        private static List<Target> targets;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
+        [HttpGet]   
+        public async Task<IActionResult> Index()
         {
-            return View();
+          targets   = await this._httpClient.GetFromJsonAsync<List<Target>>("http://localhost:5053/Targets");
+            return View(targets);
         }
 
         public IActionResult Privacy()
