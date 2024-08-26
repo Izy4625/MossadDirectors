@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MossadDirectors.Models.ViewAgentWithTarget>
+﻿@model List<MossadDirectors.Models.Getsuggestioncs>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,36 +11,51 @@
 </p>
 <table class="table">
     <thead>
+       
         <tr>
+          
             <th>
-                @Html.DisplayNameFor(model => model.Distance)
+                @Html.DisplayNameFor(model => model[1].TargetName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TimeOfExecution)
+                @Html.DisplayNameFor(model => model[1].TargetNotes)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Agent.Nickname)
+                @Html.DisplayNameFor(model => model[1].AgentNickname)
             </th>
+             <th>
+                @Html.DisplayNameFor(model => model[1].Timeleft)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[1].DistanceBetween)
+            </th> 
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+        @foreach(Getsuggestioncs item in Model)
+       { <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Distance)
+                    @Html.DisplayFor(modelItem => item.TargetName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TimeOfExecution)
+                    @Html.DisplayFor(modelItem => item.TargetNotes)
             </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Agent.Nickname)
+                    @Html.DisplayFor(modelItem => item.AgentNickname)
                 </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.DisplayFor(modelItem => item.Timeleft)
             </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.DistanceBetween)
+            </td>
+            <td>
+                    <a asp-action="AssignMission" asp-route-itemid="@item.MissionId">AssignMission</a>
+                @* @Html.ActionLin("AssignMission", "AssignMission", new {  id=item.MissionId }) | *@
+                @Html.ActionLink("Details", "Details", new { id= @item.MissionId }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>}
         </tr>
 }
     </tbody>

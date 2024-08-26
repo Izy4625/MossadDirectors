@@ -10,23 +10,35 @@ namespace MossadDirectors.Controllers
 {
     public class MissionController : Controller
     {
+       private static AssignMission assign = new AssignMission();
         // GET: MissionController1
         private readonly HttpClient _httpClient = new HttpClient();
-        private static List<ViewAgentWithTarget> _viewAgents = new List<ViewAgentWithTarget>();
+       
         [HttpGet]
         public async Task<ActionResult> Index()
         {
            
-            var res = await this._httpClient.GetFromJsonAsync<ViewAgentWithTarget[]>("http://localhost:5053/missions");
+            var res = await this._httpClient.GetFromJsonAsync<List<Getsuggestioncs>>("http://localhost:5053/missions");
    
             return View(res);   
 
         }
+       
+        public async Task<ActionResult> AssignMission(int id)
+        {
+            
+            
+            assign.status = "assigned"; 
+            //var json = JsonSerializer.Serialize(assign);
+            var result = await this._httpClient.PostAsJsonAsync<AssignMission>($"http://localhost:5053/missions/{id}", assign);
+            return RedirectToAction("Index");
+        }
 
         // GET: MissionController1/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var res = await this._httpClient.GetFromJsonAsync<Mission>($"http://localhost:5053/missions/{id}");
+            return View(res);
         }
 
         // GET: MissionController1/Create

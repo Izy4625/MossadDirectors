@@ -1,0 +1,28 @@
+﻿@* @model MossadDirectors.Models.Getsuggestioncs
+
+@{
+    ViewData["Title"] = "oneitem";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.A)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeOfExecution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agent.Nickname)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
+ *@
