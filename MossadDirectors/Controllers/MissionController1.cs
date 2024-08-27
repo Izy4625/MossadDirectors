@@ -31,8 +31,9 @@ namespace MossadDirectors.Controllers
             assign.status = "assigned"; 
             //var json = JsonSerializer.Serialize(assign);
             var result = await this._httpClient.PutAsJsonAsync<AssignMission>($"http://localhost:5053/missions/{id}",assign);
-            
-            return RedirectToAction("Index");
+
+            return RedirectToAction("Details", new { id = id });
+
         }
 
         // GET: MissionController1/Details/5
@@ -41,14 +42,7 @@ namespace MossadDirectors.Controllers
             var res = await this._httpClient.GetFromJsonAsync<Mission>($"http://localhost:5053/missions/{id}");
             return View(res);
         }
-        //public ActionResult Time()
-        //{
-
-        //    this.HttpContext.Response.AddHeader("refresh", "5; url=" + Url.Action("time"));
-        //    return View();
-        //}
-
-        // GET: MissionController1/Create
+    
         public ActionResult Create()
         {
             return View();
