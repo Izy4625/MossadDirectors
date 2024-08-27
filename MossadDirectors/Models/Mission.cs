@@ -9,9 +9,9 @@ namespace MossadDirectors.Models
         
         public int Id { get; set; }
      
-        public int AgentId { get; set; }
+        public Agent agent { get; set; }
    
-        public int TargetId { get; set; }
+       public Target Target { get; set; }
 
         public double? MissionTimer { get; set; }
         

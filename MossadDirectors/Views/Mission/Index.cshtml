@@ -51,8 +51,9 @@
                     @Html.DisplayFor(modelItem => item.DistanceBetween)
             </td>
             <td>
-                    <a asp-action="AssignMission" asp-route-itemid="@item.MissionId">AssignMission</a>
-                @* @Html.ActionLin("AssignMission", "AssignMission", new {  id=item.MissionId }) | *@
+                   @*  <a asp-action="AssignMission" asp-route-itemid="@item.MissionId">AssignMission</a> *@
+                @Html.ActionLink("AssignMission", "AssignMission", new {  id=item.MissionId }) |
+                    @* <a asp-action="AssignMission" asp-route-itemid="@item.MissionId">AssignMission</a> *@
                 @Html.ActionLink("Details", "Details", new { id= @item.MissionId }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>}
